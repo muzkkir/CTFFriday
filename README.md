@@ -9,13 +9,9 @@ This CTF had four different challenges in which major 3 domain was covered; Web,
 <kbd>![alt text](test/1.png)</kbd>
 
 
-
 ## First Flag
 
-
-
 <kbd>![alt text](test/36.png)</kbd>
-
 
 As the challenge was about the findings of the "Robots.txt" file. First, I try to check the request and response for the "http://10.90.137.137/robots.txt" page. But, I received an empty response. Here is the screenshot.
 
@@ -251,7 +247,7 @@ A few minutes spending on reading the other flags hint !!! and suddenly I rememb
 <kbd>![alt text](test/29.png)</kbd>
 
 
-I recompiled and again run code & Got Final Flag !!!
+I recompiled and run code & Got Final Flag !!!
 
 ```nsctf "!n_m3m0ry_0f_+0ny_5+@rK"```
 
@@ -264,7 +260,7 @@ I recompiled and again run code & Got Final Flag !!!
 Overall, this CTF was unique for me because I learned about FTP, cryptography, and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
 
 
->
+#
 
 **Thank you.**
 
