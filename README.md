@@ -6,7 +6,7 @@ In this article, I’m going to explain solutions of NSCTF April Week 4, 2020 CT
 
 This CTF had four different challenges in which major 3 domain was covered; Web, Network, and Cryptography challenge. So, We have to start from Website exploitation to access the system and decrypt the flag file.
 
-![alt text](test/1.png)
+<kbd>![alt text](test/1.png)</kbd>
 
 
 
@@ -14,18 +14,18 @@ This CTF had four different challenges in which major 3 domain was covered; Web,
 
 
 
-![alt text](test/36.png)
+<kbd>![alt text](test/36.png)</kbd>
 
 
 As the challenge was about the findings of the "Robots.txt" file. First, I try to check the request and response for the "http://10.90.137.137/robots.txt" page. But, I received an empty response. Here is the screenshot.
 
-![alt text](test/3.png)
+<kbd>![alt text](test/3.png)</kbd>
 
 
 I try to change the request method to POST, still, that did not work. Then I thought it might be blocked by user-agent. So, I go to the "https://user-agents.net/" page and took a random browser-agent and build the script to try all one by one.
 
 
-![alt text](test/33.png)
+<kbd>![alt text](test/33.png)</kbd>
 
 But I didn’t get any result because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 hidden "base64" value was written in hidden. I tried to decode those values.
 
@@ -40,23 +40,23 @@ After that, I enter this command:
 
 > curl --user-agent "chandramauli" http://10.90.137.137/robots.txt
 
-and receive that response:
+and received response:
 
 > "You made it ... but I want major version 2."
 
-![alt text](test/6.png)
+<kbd>![alt text](test/6.png)</kbd>
 
 
 
 Spending a few minutes with the "try and error" method to get the flag.
 
-![alt text](test/7.png)
+<kbd>![alt text](test/7.png)</kbd>
 
 And Finally This was my 1st Flag !!!
 
 ```flag{tH!5_!5_N0_Pl@C3_t0_D!3}```
 
-![alt text](test/8.png)
+<kbd>![alt text](test/8.png)</kbd>
 
 
 
@@ -65,35 +65,35 @@ And Finally This was my 1st Flag !!!
 
 After that, I start the Nmap scan on the machine. I got 2 more ports were open. "FTP" and "SSH"
 
-![alt text](test/9.png)
+<kbd>![alt text](test/9.png)</kbd>
 
 I tried anonymously login on SSH Port!
 
-![alt text](test/10.png)
+<kbd>![alt text](test/10.png)</kbd>
 
 I also tried the FTP login. For that, first thing I search for "https://www.smartfile.com/blog/the-ultimate-ftp-commands-list/" :stuck_out_tongue_closed_eyes:, But still I did not get any useful information.
 
-![alt text](test/11.png)
+<kbd>![alt text](test/11.png)</kbd>
 
 So I return to the "/robots.txt" page for the hint and got it.
 
-![alt text](test/12.png)
+<kbd>![alt text](test/12.png)</kbd>
 
 A few minutes later, I visit "view-source:http://10.90.137.137/Lockdown_is_the_Key/" and saw some awkward URL path reference.
 
 > Then I realize that, similar task I played on "HackTheBox" where I used SQLi for flag. I tried, but somehow it did not work.
 
-![alt text](test/13.png)
+<kbd>![alt text](test/13.png)</kbd>
 
 I also look for other vulnerabilities and found "File Retrieval".
 
-![alt text](test/14.png)
+<kbd>![alt text](test/14.png)</kbd>
 
 I visit other files and Directories. Then, I look in the FTP configuration file and got 2nd flag,
 
 ```"flag{W3_@R3_!n_+H3_3NDG@M3_n0W!}"```
 
-![alt text](test/15.png)
+<kbd>![alt text](test/15.png)</kbd>
 
 
 
@@ -103,7 +103,7 @@ I visit other files and Directories. Then, I look in the FTP configuration file 
 
 After reading the entire configuration file, I found "write_enable=YES" was enabled for anonymous users. So It's time to upload shell. 
 
-![alt text](test/16.png)
+<kbd>![alt text](test/16.png)</kbd>
 
 Website was written in PHP and I used one liner shell code ```"<?php system($_GET['cmd']);?>"``` So I uploaded shell file on server.
 
@@ -134,7 +134,7 @@ drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
 ftp>
 ```
 
-![alt text](test/17.png)
+<kbd>![alt text](test/17.png)</kbd>
 
 
 > Bingoo !!!
@@ -143,7 +143,7 @@ ftp>
 
 I looked at system information and user permission. I see 2 different files which might be key !!
 
-![alt text](test/19.png)
+<kbd>![alt text](test/19.png)</kbd>
 
 ```
 So, I tried ssh login
@@ -157,7 +157,7 @@ Then I tried again with below credentials
 And Succeed!
 ```
 
-![alt text](test/20.png)
+<kbd>![alt text](test/20.png)
 
 
 I run common system commands and got Flag!!!
@@ -165,7 +165,7 @@ I run common system commands and got Flag!!!
 ```nsctf{"Ev3ryth!ng_!5_!N_my_m!nd"}```
 
 
-![alt text](test/21.png)
+<kbd>![alt text](test/21.png)</kbd>
 
 
 
@@ -175,7 +175,7 @@ I run common system commands and got Flag!!!
 I got 2 files in which one was encrypted, Then I tried to look for a decryption key in another file.
 
 
-![alt text](test/22.png)
+<kbd>![alt text](test/22.png)</kbd>
 
 
 ```
@@ -218,7 +218,7 @@ I am not "C language Master" but what I can understand from this code was that,
 
 This code will help me to decrypt this "msg.enc" file, So I tried to run the C file but first I have to install GCC in that machine.
 
-![alt text](test/25.png)
+<kbd>![alt text](test/25.png)</kbd>
 
 ```
 Now,
@@ -226,11 +226,11 @@ gcc encryptor.c -o enc
 ./enc msg.enc flag.txt
 ```
 
-![alt text](test/26.png)
+<kbd>![alt text](test/26.png)</kbd>
 
 Still, the flag was encrypted !!!
 
-![alt text](test/27.png)
+<kbd>![alt text](test/27.png)</kbd>
 
 
 ```
@@ -241,14 +241,14 @@ So I changed the "-" value to "+" So the code would work perfectly.
 c = (p + (k[i % strlen(k)] ^ t) + i*i) & 0xff;
 ```
 
-![alt text](test/28.png)
+<kbd>![alt text](test/28.png)</kbd>
 
 
 Still somewhere went wrong!!
 
 A few minutes spending on reading the other flags hint !!! and suddenly I remembered the key "use_chandramauli_whenever_you_want" and I changed the decryption key from "whenever_you_want!" to "chandramauli".
 
-![alt text](test/29.png)
+<kbd>![alt text](test/29.png)</kbd>
 
 
 I recompiled and again run code & Got Final Flag !!!
@@ -256,7 +256,7 @@ I recompiled and again run code & Got Final Flag !!!
 ```nsctf "!n_m3m0ry_0f_+0ny_5+@rK"```
 
 
-![alt text](test/30.png)
+<kbd>![alt text](test/30.png)</kbd>
 
 
 ## Conclusion
