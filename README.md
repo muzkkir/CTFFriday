@@ -172,7 +172,7 @@ I run common system commands and got Flag!!!
 ## Fourth Flag
 
 
-I got 2 random files in which one was encrypted, Then I tried to look for a decryption key in another file.
+I got 2 files in which one was encrypted, Then I tried to look for a decryption key in another file.
 
 
 ![alt text](test/22.png)
@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
 
 
 
-I am not "C language Master" but I can conclude from this code was that,
+I am not "C language Master" but what I can understand from this code was that,
 
 This code will help me to decrypt this "msg.enc" file, So I tried to run the C file but first I have to install GCC in that machine.
 
@@ -244,13 +244,14 @@ c = (p + (k[i % strlen(k)] ^ t) + i*i) & 0xff;
 ![alt text](test/28.png)
 
 
-Still I went somewhere wrong!!
-A few minutes spending on reading the other flags hint !!! and change the decryption key from "whenever_you_want!" to "chandramauli".
+Still somewhere went wrong!!
+
+A few minutes spending on reading the other flags hint !!! and suddenly I remembered the key "use_chandramauli_whenever_you_want" and I changed the decryption key from "whenever_you_want!" to "chandramauli".
 
 ![alt text](test/29.png)
 
 
-I recompiled and again run this code & Got Final Flag !!!
+I recompiled and again run code & Got Final Flag !!!
 
 ```nsctf "!n_m3m0ry_0f_+0ny_5+@rK"```
 
@@ -258,12 +259,12 @@ I recompiled and again run this code & Got Final Flag !!!
 ![alt text](test/30.png)
 
 
-
 ## Conclusion
 
+Overall, this CTF was unique for me because I learned about FTP, cryptography and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
 
 
-Overall, this CTF was unique for me because I leaned scripting and "FTP" shell commands.  Also, playing this was fun and I appreciate the efforts of the team.
 
-#### Thank you.
-#### Husseni Muzkkir.
+**Thank you.**
+
+**Husseni Muzkkir.**
