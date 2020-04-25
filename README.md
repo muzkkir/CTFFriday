@@ -30,10 +30,10 @@ I try to change the request method to POST, still, that did not work. Then I tho
 But I didn’t get any result because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 hidden "base64" value was written in hidden. I tried to decode those values.
 
 ```
-Encode Value   :  "dXNlX2NoYW5kcmFtYXVsaV8="
-Decoded Value  :  "use_chandramauli_"
-Encode Value   :  "d2hlbmV2ZXJfeW91X3dhbnQh"
-Decoded Value  :  "whenever_you_want"
+Encode Value   :  "dXNlX2NoYW5kcmFtYXVsaV8="
+Decoded Value  :  "use_chandramauli_"
+Encode Value   :  "d2hlbmV2ZXJfeW91X3dhbnQh"
+Decoded Value  :  "whenever_you_want"
 ```
 
 After that, I enter this command:
@@ -71,7 +71,7 @@ I tried anonymously login on SSH Port!
 
 <kbd>![alt text](test/10.png)</kbd>
 
-I also tried the FTP login. For that, first thing I search for "https://www.smartfile.com/blog/the-ultimate-ftp-commands-list/" :stuck_out_tongue_closed_eyes:, But still I did not get any useful information.
+I also tried the FTP login. For that, the first thing I search for "https://www.smartfile.com/blog/the-ultimate-ftp-commands-list/" :stuck_out_tongue_closed_eyes: But still I did not get any useful information.
 
 <kbd>![alt text](test/11.png)</kbd>
 
@@ -81,7 +81,7 @@ So I return to the "/robots.txt" page for the hint and got it.
 
 A few minutes later, I visit "view-source:http://10.90.137.137/Lockdown_is_the_Key/" and saw some awkward URL path reference.
 
-> Then I realize that, similar task I played on "HackTheBox" where I used SQLi for flag. I tried, but somehow it did not work.
+> Then I realize that similar tasks I played on "HackTheBox" where I used SQLi for flag. I tried, but somehow it did not work.
 
 <kbd>![alt text](test/13.png)</kbd>
 
@@ -120,7 +120,7 @@ Using binary mode to transfer files.
 ftp> ls
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
-drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
+drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
 226 Directory send OK.
 ftp> put shell.php 
 local: shell.php remote: shell.php
@@ -129,7 +129,7 @@ local: shell.php remote: shell.php
 ftp> ls
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
-drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
+drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
 226 Directory send OK.
 ftp>
 ```
@@ -147,13 +147,13 @@ I looked at system information and user permission. I see 2 different files whic
 
 ```
 So, I tried ssh login
-    ssh usernsctf@10.90.137.137
-    password: passiron3000
+    ssh usernsctf@10.90.137.137
+    password: passiron3000
 but failed. !!
 
 Then I tried again with below credentials
-    ssh nsctf@10.90.137.137
-    password: iron3000
+    ssh nsctf@10.90.137.137
+    password: iron3000
 And Succeed!
 ```
 
@@ -183,32 +183,32 @@ I got 2 files in which one was encrypted, Then I tried to look for a decryption 
 #include <stdio.h>
 #include <string.h>
 int main(int argc, char **argv) {
-    if (argc != 3) {
-         printf("USAGE: %s INPUT OUTPUT\n", argv[0]);
-         return 0;
-     }
-     FILE* input  = fopen(argv[1], "rb");
-     FILE* output = fopen(argv[2], "wb");
-     if (!input || !output) {
-         printf("Error\n");
-         return 0;
-     }
-     char c, p, t = 0;
-     int i = 0;
-    char k[] = "Whenever_you_Want!";
-    i = 0;
-    c, p, t = 0;
-    int g = 0;
-    while ((p = fgetc(input)) != 1) {
-        c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;
-         printf("Decrypting %x i=%d t=%d k=%d -> %d\n",p,i,t,(k[i % strlen(k)] ^ t),c);
-        t = c;
-        i++;
-         fputc(c, output);
-         g++;
-         if (g>100) {break;}
-    }
-    return 0;
+    if (argc != 3) {
+         printf("USAGE: %s INPUT OUTPUT\n", argv[0]);
+         return 0;
+     }
+     FILE* input  = fopen(argv[1], "rb");
+     FILE* output = fopen(argv[2], "wb");
+     if (!input || !output) {
+         printf("Error\n");
+         return 0;
+     }
+     char c, p, t = 0;
+     int i = 0;
+    char k[] = "Whenever_you_Want!";
+    i = 0;
+    c, p, t = 0;
+    int g = 0;
+    while ((p = fgetc(input)) != 1) {
+        c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;
+         printf("Decrypting %x i=%d t=%d k=%d -> %d\n",p,i,t,(k[i % strlen(k)] ^ t),c);
+        t = c;
+        i++;
+         fputc(c, output);
+         g++;
+         if (g>100) {break;}
+    }
+    return 0;
 }
 ```
 
@@ -234,7 +234,7 @@ Still, the flag was encrypted !!!
 
 
 ```
-After some random changes in file I found that something was wromg in that line:
+After some random changes in file I found that something was wrong in that line:
 "c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;"
 
 So I changed the "-" value to "+" So the code would work perfectly.
@@ -261,9 +261,10 @@ I recompiled and again run code & Got Final Flag !!!
 
 ## Conclusion
 
-Overall, this CTF was unique for me because I learned about FTP, cryptography and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
+Overall, this CTF was unique for me because I learned about FTP, cryptography, and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
 
 
+>
 
 **Thank you.**
 
