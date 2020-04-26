@@ -23,7 +23,11 @@ I try to change the request method to POST, still, that did not work. Then I tho
 
 <kbd>![alt text](test/33.png)</kbd>
 
+<kbd>![alt text](test/4.png)</kbd>
+
 But I didn’t get any result because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 hidden "base64" value was written in hidden. I tried to decode those values.
+
+<kbd>![alt text](test/5.png)</kbd>
 
 ```
 Encode Value   :  "dXNlX2NoYW5kcmFtYXVsaV8="
