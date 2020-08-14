@@ -1,10 +1,10 @@
-# Writeup for NSCTFAPRW4 by Muzkkir
+# Writeup for CTFFriday 2020 April Week 4 by Muzkkir
 
 
 
-In this article, I’m going to explain solutions of NSCTF April Week 4, 2020 CTF challenge named "Marvel Vs. DC Movies" Organized by Net-Square Solutions Pvt. Ltd. and created by Aman Barot.
+In this article, I’m going to explain solutions of NSCTF April Week 4, 2020 CTF challenge named "Marvel Vs. DC Movies" Organized by Net-Square Solutions Pvt. Ltd. and created by Aman Barot. Both Marvel and DC are preparing to enter new eras in their respective universes, and even though they have been competing against each other for years. However, This for CTF does not require any knowledge about movies. 
 
-This CTF had four different challenges in which major 3 domain was covered; Web, Network, and Cryptography challenge. So, We have to start from Website exploitation to access the system and decrypt the flag file.
+This CTF had four different challenges in which major 3 domain was covered; Web, Network, and Cryptography challenge. We have to start from Website exploitation to access the system and decrypt the flag file.
 
 <kbd>![alt text](test/1.png)</kbd>
 
@@ -13,19 +13,18 @@ This CTF had four different challenges in which major 3 domain was covered; Web,
 
 <kbd>![alt text](test/36.png)</kbd>
 
-As the challenge was about the findings of the "Robots.txt" file. First, I try to check the request and response for the "http://10.90.137.137/robots.txt" page. But, I received an empty response. Here is the screenshot.
+As the challenge was about the findings of the "Robots.txt" file. I tried to check the request and response for the "http://10.90.137.137/robots.txt" page. But, It gives an empty response. :sweat_smile:
 
 <kbd>![alt text](test/3.png)</kbd>
 
 
-I try to change the request method to POST, still, that did not work. Then I thought it might be blocked by user-agent. So, I go to the "https://user-agents.net/" page and took a random browser-agent and build the script to try all one by one.
-
+I changed the request method to POST, still, that did not worked. I thought it might be blocked by user-agent. So, I visited to the "https://user-agents.net/" page and took a random browser-agent and build the bash script to try all one by one.
 
 <kbd>![alt text](test/33.png)</kbd>
 
 <kbd>![alt text](test/4.png)</kbd>
 
-But I didn’t get any result because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 hidden "base64" value was written in hidden. I tried to decode those values.
+But I didn’t get any result :persevere: because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 "base64" value was written in hidden. After decoding to those values :wink:  
 
 <kbd>![alt text](test/5.png)</kbd>
 
@@ -36,7 +35,7 @@ Encode Value   :  "d2hlbmV2ZXJfeW91X3dhbnQh"
 Decoded Value  :  "whenever_you_want"
 ```
 
-After that, I enter this command:
+Now, It's Show Time:
 
 > curl --user-agent "chandramauli" http://10.90.137.137/robots.txt
 
@@ -46,13 +45,11 @@ and received response:
 
 <kbd>![alt text](test/6.png)</kbd>
 
-
-
 Spending a few minutes with the "try and error" method to get the flag.
 
 <kbd>![alt text](test/7.png)</kbd>
 
-And Finally This was my 1st Flag !!!
+Finally, That was my 1st Flag !!!
 
 ```flag{tH!5_!5_N0_Pl@C3_t0_D!3}```
 
@@ -63,7 +60,7 @@ And Finally This was my 1st Flag !!!
 ## Second Flag
 
 
-After that, I start the Nmap scan on the machine. I got 2 more ports were open. "FTP" and "SSH"
+2nd Challange was about to find the host vulnerability. I start the Nmap scan on the machine. I got 2 more ports were open. "FTP" and "SSH"
 
 <kbd>![alt text](test/9.png)</kbd>
 
@@ -79,17 +76,17 @@ So I return to the "/robots.txt" page for the hint and got it.
 
 <kbd>![alt text](test/12.png)</kbd>
 
-A few minutes later, I visit "view-source:http://10.90.137.137/Lockdown_is_the_Key/" and saw some awkward URL path reference.
+A few minutes later, I visited "view-source:http://10.90.137.137/Lockdown_is_the_Key/" and saw some awkward URL path reference.
 
-> Then I realize that similar tasks I played on "HackTheBox" where I used SQLi for flag. I tried, but somehow it did not work.
+> Then I realize that similar tasks I played on "HackTheBox" where I used SQLi for flag. I tried SQL Injection, but somehow it did not work.
 
 <kbd>![alt text](test/13.png)</kbd>
 
-I also look for other vulnerabilities and found "File Retrieval".
+I have also looked for other vulnerabilities and within few minutes I found "File Retrieval".
 
 <kbd>![alt text](test/14.png)</kbd>
 
-I visit other files and Directories. Then, I look in the FTP configuration file and got 2nd flag,
+I searched for sensitive system files and directories like passwd and shadow files, home user's directory files, bash history files, etc. But, not anything was much useful. Then, I retrieved in the FTP configuration file and got my 2nd flag.
 
 ```"flag{W3_@R3_!n_+H3_3NDG@M3_n0W!}"```
 
@@ -101,11 +98,11 @@ I visit other files and Directories. Then, I look in the FTP configuration file 
 
 
 
-After reading the entire configuration file, I found "write_enable=YES" was enabled for anonymous users. So It's time to upload shell. 
+After reading the entire configuration file, I found "write_enable=YES" was enabled for anonymous users. So It's time to upload shell and get RCE. 
 
 <kbd>![alt text](test/16.png)</kbd>
 
-Website was written in PHP and I used one liner shell code ```"<?php system($_GET['cmd']);?>"``` So I uploaded shell file on server.
+The website was written in PHP. So, I could add and run the PHP shell smoothly. One liner famous PHP shell code ```"<?php system($_GET['cmd']);?>"``` I used to exploit the system. I uploaded a shell file on the server that way I can able to run system commands.
 
 ```
 root@muzzy:~# ftp 10.90.137.137
@@ -160,7 +157,7 @@ And Succeed!
 <kbd>![alt text](test/20.png)
 
 
-I run common system commands and got Flag!!!
+After running common system commands I got Flag!!!
 
 ```nsctf{"Ev3ryth!ng_!5_!N_my_m!nd"}```
 
@@ -172,7 +169,7 @@ I run common system commands and got Flag!!!
 ## Fourth Flag
 
 
-I got 2 files in which one was encrypted, Then I tried to look for a decryption key in another file.
+I saw 2 files in which one was encrypted, Then I tried to look for a decryption key in another file. That the challenge was about to solve the encryption and get the flag by decrypting the flag file. 
 
 
 <kbd>![alt text](test/22.png)</kbd>
@@ -216,7 +213,7 @@ int main(int argc, char **argv) {
 
 I am not "C language Master" but what I can understand from this code was that,
 
-This code will help me to decrypt this "msg.enc" file, So I tried to run the C file but first I have to install GCC in that machine.
+This code will help me to decrypt this "msg.enc" file, So I tried to run the C file but first I have to install GCC in that machine. :sweat_smile: It seems I am the first one to solve this puzzle. I need to install all dependencies to get the flag.
 
 <kbd>![alt text](test/25.png)</kbd>
 
@@ -232,9 +229,10 @@ Still, the flag was encrypted !!!
 
 <kbd>![alt text](test/27.png)</kbd>
 
+Now, I needed to read each line and understand the flow of decryption. So I concluded after spending few minutes on the code, I found that the "c" parameter having the wrong "-" sign instead It needs to be "+" for adding the decryption key to the decryption logic.
 
 ```
-After some random changes in file I found that something was wrong in that line:
+After some changes in file with parameter value I found that something was wrong in that line:
 "c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;"
 
 So I changed the "-" value to "+" So the code would work perfectly.
@@ -244,14 +242,14 @@ c = (p + (k[i % strlen(k)] ^ t) + i*i) & 0xff;
 <kbd>![alt text](test/28.png)</kbd>
 
 
-Still somewhere went wrong!!
+Still somewhere I did something wrong!!
 
 A few minutes spending on reading the other flags hint !!! and suddenly I remembered the key "use_chandramauli_whenever_you_want" and I changed the decryption key from "whenever_you_want!" to "chandramauli".
 
 <kbd>![alt text](test/29.png)</kbd>
 
 
-I recompiled and run code & Got Final Flag !!!
+I recompiled and run code & Gotcha !!!
 
 ```nsctf "!n_m3m0ry_0f_+0ny_5+@rK"```
 
@@ -261,8 +259,7 @@ I recompiled and run code & Got Final Flag !!!
 
 ## Conclusion
 
-Overall, this CTF was unique for me because I learned about FTP, cryptography, and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
-
+Overall, this CTF was unique for me because I learned about finding and solving the decryption logic from code. Also, playing this was fun with brainstorming and I appreciate the efforts of the team. Thanks for reading.
 
 #
 
