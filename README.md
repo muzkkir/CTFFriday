@@ -46,7 +46,6 @@ Decoded Value  :  "use_chandramauli_"
 Encode Value   :  "d2hlbmV2ZXJfeW91X3dhbnQh"
 
 Decoded Value:  "whenever_you_want"
-
 ```
 
 
@@ -205,25 +204,15 @@ I looked at system information and user permission. I see 2 different files whic
 
 
 ```
-
 So, I tried ssh login
-
     ssh usernsctf@10.90.137.137
-
     password: passiron3000
-
 but failed. !!
 
-
-
 Then I tried again with below credentials
-
     ssh nsctf@10.90.137.137
-
     password: iron3000
-
 And Succeed!
-
 ```
 
 <kbd>![alt text](test/20.png)
@@ -297,13 +286,11 @@ This code will help me to decrypt this "msg.enc" file, So I tried to run the C f
 
 
 ```
-
 Now,
 
 gcc encryptor.c -o enc
 
 ./enc msg.enc flag.txt
-
 ```
 
 <kbd>![alt text](test/26.png)</kbd>
@@ -320,17 +307,11 @@ Now, I needed to read each line and understand the flow of decryption. So I conc
 
 
 ```
-
 After some changes in the file with parameter value I found that something was wrong in that line:
-
 "c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;"
 
-
-
 So I changed the "-" value to "+" So the code would work perfectly.
-
 c = (p + (k[i % strlen(k)] ^ t) + i*i) & 0xff;
-
 ```
 
 
@@ -359,15 +340,12 @@ I recompiled and run code & Gotcha !!!
 ## Conclusion
 
 
-Overall, this CTF was unique for me because I learned about finding and solving the decryption logic from code. Also, playing this was fun with brainstorming and I appreciate the efforts of the team. Thanks for reading.
+Overall, this CTF was unique for me because I learned about finding and solving the decryption logic from code. Also, playing this was fun with brainstorming and I appreciate the efforts of the team. Thank you for reading. :blush:
 
 
 #
 
-
 **Thank you.**
-
-
 
 **Husseni Muzkkir.**
 
