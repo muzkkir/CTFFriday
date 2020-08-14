@@ -18,7 +18,7 @@ As the challenge was about the findings of the "Robots.txt" file. I tried to che
 <kbd>![alt text](test/3.png)</kbd>
 
 
-I changed the request method to POST, still, that did not worked. I thought it might be blocked by user-agent. So, I visited to the "https://user-agents.net/" page and took a random browser-agent and build the bash script to try all one by one.
+I changed the request method to POST, still, that did not work. I thought it might be blocked by user-agent. So, I visited to the "https://user-agents.net/" page and took a random browser-agent and build the bash script to try all one by one.
 
 <kbd>![alt text](test/33.png)</kbd>
 
